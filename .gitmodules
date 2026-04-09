@@ -1,0 +1,3 @@
+[submodule "CRISP-Real2Sim"]
+	path = CRISP-Real2Sim
+	url = https://github.com/Z1hanW/CRISP-Real2Sim.git
