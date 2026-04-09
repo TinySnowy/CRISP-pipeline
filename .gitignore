@@ -1,0 +1,8 @@
+smpl/
+smplx/
+CRISP-Real2Sim/
+image.png
+*.pkl
+*.npz
+*.pth
+*.ckpt
