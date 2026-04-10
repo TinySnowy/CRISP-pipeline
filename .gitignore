@@ -1,7 +1,20 @@
 smpl/
 smplx/
-image.png
 *.pkl
 *.npz
 *.pth
 *.ckpt
+
+# screenshots / local images
+image.png
+image copy*.png
+*.mov
+*.mp4
+
+# local logs and working files
+sstair_log.md
+seeds_crisp/
+scenes/
+
+# claude memory
+.claude/
