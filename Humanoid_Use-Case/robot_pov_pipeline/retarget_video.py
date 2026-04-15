@@ -38,8 +38,8 @@ def retarget_video(video_path: str, output_dir: str):
     right_retargeting = right_cfg.build()
     left_retargeting  = left_cfg.build()
 
-    right_detector = SingleHandDetector(hand_type="Right", selfie=False)
-    left_detector  = SingleHandDetector(hand_type="Left",  selfie=False)
+    right_detector = SingleHandDetector(hand_type="Right", selfie=True)
+    left_detector  = SingleHandDetector(hand_type="Left",  selfie=True)
 
     cap = cv2.VideoCapture(video_path)
     fps   = cap.get(cv2.CAP_PROP_FPS)
