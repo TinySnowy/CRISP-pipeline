@@ -14,10 +14,16 @@ source ~/.bashrc
 ```bash
 conda create -n robot_pov python=3.9 -y
 conda activate robot_pov
-conda install -c conda-forge pybullet -y
 ```
 
-## 3. Install Python dependencies
+## 3. Install dex-retargeting with all dependencies (includes SAPIEN)
+
+```bash
+cd ~/CRISP-pipeline/dex-retargeting
+pip install -e ".[example]"
+```
+
+## 4. Install remaining dependencies
 
 ```bash
 pip install mediapipe==0.10.9 opencv-python tqdm numpy requests
@@ -25,23 +31,11 @@ pip install mediapipe==0.10.9 opencv-python tqdm numpy requests
 
 > mediapipe must be pinned to 0.10.9 — newer versions removed the `solutions` API.
 
-## 4. Install dex-retargeting
+## 5. Download robot assets
 
 ```bash
 cd ~/CRISP-pipeline/dex-retargeting
-pip install -e ".[all]"
-```
-
-## 5. Update URDF paths
-
-Edit these two files and set `urdf_path` to the absolute path on this machine:
-
-- `Humanoid_Use-Case/robot_pov_pipeline/configs/gr1t2_right_hand.yml`
-- `Humanoid_Use-Case/robot_pov_pipeline/configs/gr1t2_left_hand.yml`
-
-```yaml
-# Example — adjust to your clone location
-urdf_path: /home/ubuntu/CRISP-pipeline/Wiki-GRx-URDF/Dexterous_hand/fourier_hand_6dof/urdf/fourier_right_hand_6dof.urdf
+python -m dex_retargeting.download_assets
 ```
 
 ## 6. Run the pipeline
@@ -49,14 +43,13 @@ urdf_path: /home/ubuntu/CRISP-pipeline/Wiki-GRx-URDF/Dexterous_hand/fourier_hand
 ```bash
 cd ~/CRISP-pipeline
 
-# Step 1: retarget
+# Step 1: retarget human video → inspire hand joint angles
 conda run -n robot_pov python Humanoid_Use-Case/robot_pov_pipeline/retarget_video.py \
-  --video /path/to/input.mp4 \
+  --video Human_POV_videos/test1.mp4 \
   --output_dir Humanoid_Use-Case/robot_pov_pipeline/output
 
-# Step 2: render scaffold
+# Step 2: render scaffold video (SAPIEN, headless)
 conda run -n robot_pov python Humanoid_Use-Case/robot_pov_pipeline/render_scaffold.py \
-  --right Humanoid_Use-Case/robot_pov_pipeline/output/right_joints.pkl \
-  --left  Humanoid_Use-Case/robot_pov_pipeline/output/left_joints.pkl \
+  --pkl    Humanoid_Use-Case/robot_pov_pipeline/output/right_joints.pkl \
   --output Humanoid_Use-Case/robot_pov_pipeline/output/scaffold.mp4
 ```
