@@ -10,6 +10,7 @@ image.png
 image copy*.png
 *.mov
 *.mp4
+!Human_POV_videos/*.mp4
 
 # local logs and working files
 sstair_log.md

@@ -1,0 +1,32 @@
+retargeting:
+  type: position
+  urdf_path: /Users/bytedance/Documents/trae_projects/CRISP-pipeline/Wiki-GRx-URDF/Dexterous_hand/fourier_hand_6dof/urdf/fourier_right_hand_6dof.urdf
+
+  target_joint_names: [
+    "R_thumb_proximal_yaw_joint",
+    "R_thumb_proximal_pitch_joint",
+    "R_index_proximal_joint",
+    "R_middle_proximal_joint",
+    "R_ring_proximal_joint",
+    "R_pinky_proximal_joint"
+  ]
+
+  # Robot fingertip links + intermediate links for better pose matching
+  target_link_names: [
+    "R_thumb_tip_link",
+    "R_index_tip_link",
+    "R_middle_tip_link",
+    "R_ring_tip_link",
+    "R_pinky_tip_link",
+    "R_thumb_proximal_pitch_link",
+    "R_index_proximal_link",
+    "R_middle_proximal_link"
+  ]
+
+  # MediaPipe hand landmark indices:
+  # 4=thumb tip, 8=index tip, 12=middle tip, 16=ring tip, 20=pinky tip
+  # 2=thumb intermediate, 6=index proximal, 10=middle proximal
+  target_link_human_indices: [ 4, 8, 12, 16, 20, 2, 6, 10 ]
+
+  add_dummy_free_joint: True
+  low_pass_alpha: 0.6

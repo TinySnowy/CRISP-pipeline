@@ -1,0 +1,28 @@
+retargeting:
+  type: position
+  urdf_path: /Users/bytedance/Documents/trae_projects/CRISP-pipeline/Wiki-GRx-URDF/Dexterous_hand/fourier_hand_6dof/urdf/fourier_left_hand_6dof.urdf
+
+  target_joint_names: [
+    "L_thumb_proximal_yaw_joint",
+    "L_thumb_proximal_pitch_joint",
+    "L_index_proximal_joint",
+    "L_middle_proximal_joint",
+    "L_ring_proximal_joint",
+    "L_pinky_proximal_joint"
+  ]
+
+  target_link_names: [
+    "L_thumb_tip_link",
+    "L_index_tip_link",
+    "L_middle_tip_link",
+    "L_ring_tip_link",
+    "L_pinky_tip_link",
+    "L_thumb_proximal_pitch_link",
+    "L_index_proximal_link",
+    "L_middle_proximal_link"
+  ]
+
+  target_link_human_indices: [ 4, 8, 12, 16, 20, 2, 6, 10 ]
+
+  add_dummy_free_joint: True
+  low_pass_alpha: 0.6
